@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Photo Gallery</title>
+</head>
+<body>
+    <h1>Snapshots</h1>
+    <ul>
+        <li>
+            <a href="./images/images1.jpg" onclick="showPic(this); return false;">图片1</a>
+        </li>
+        <li>
+            <a href="./images/images2.jpg" onclick="showPic(this); return false;">图片2</a>
+        </li>
+        <li>
+            <a href="./images/images3.jpg" onclick="showPic(this); return false;">图片3</a>
+        </li>
+        <li>
+            <a href="./images/images4.jpg" onclick="showPic(this); return false;">图片4</a>
+        </li>
+    </ul>
+    <img id="placeholder" src="./" alt="">
+</body>
+    <script>
+        function showPic(whichpic){
+            var source = whichpic.getAttribute("href");
+            var placeholder = document.getElementById("placeholder");
+            placeholder.setAttribute("src",source);
+        }
+    </script>
+</html>
+
+<!--
+*英文学习
+* Photo Gallery = 图片库
+* Snapshots = 快照
+* placeholder = 占位符
+* which = 哪一个
+* source = 来源
+-->
+
+<!--
+*关键函数
+* getElementById = 获取元素节点
+* getAttribute = 获取节点属性
+* onclick = 点击链接时，给其添加行为
+-->
+
+<!--
+*知识总结
+* 写一个函数，还有申明变量，名称要能描述它们的用途，语义要明确。
+*
+* 将获取到的元素节点，赋值给新申明的变量，避免代码的冗长。
+    如：
+    1：placeholder.setAttribute("src",source);
+    2：document.getElementById("placeholder").setAttribute("src",whichpic.getAttribute("href"));
+    1肯定比2更容易阅读和理解。
+*
+* 添加事件处理函数的语法如下：
+    event = "JavaScript statements(s)"
+    我们可以把任意的熟练的JS语句放在这对引号之间，只要把各条语句用分号隔开。
+*
+* 遇到问题：点击链接时，超链接的默认行为也会被调用，会打开新的窗口。
+  因此我要阻止默认行为被调用，只需做如下操作：
+    onclick="showPic(this); return false;"
+    当点击时，如果JS代码返回false，onclick事件就会认为超链接没有被点击，也就不会跳到新的窗口了。
+-->
+
