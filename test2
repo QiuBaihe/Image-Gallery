@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Photo Gallery</title>
+    <style>
+        body{
+            color: #333;
+            font-family: "Helvetica","Arial",serif;
+            background-color: #ccc;
+            margin: 1em 10%;
+        }
+        h1{
+            color: #333;
+            background-color: transparent;
+        }
+        a{
+            color: #c60;
+            background-color: transparent;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        ul{
+            padding: 0;
+        }
+        li{
+            float: left;
+            padding: 1em;
+            list-style: none;
+        }
+        img{
+            display: block;
+            clear: both;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+    <h1>Snapshots</h1>
+    <ul>
+        <li>
+            <a href="./images/images1.jpg" title="图片1" onclick="showPic(this); return false;">图片1</a>
+        </li>
+        <li>
+            <a href="./images/images2.jpg" title="图片2" onclick="showPic(this); return false;">图片2</a>
+        </li>
+        <li>
+            <a href="./images/images3.jpg" title="图片3" onclick="showPic(this); return false;">图片3</a>
+        </li>
+        <li>
+            <a href="./images/images4.jpg" title="图片4" onclick="showPic(this); return false;">图片4</a>
+        </li>
+    </ul>
+    <img id="placeholder" src="./images/images1.jpg" alt="">
+    <p id="description">Choose an image.</p>
+</body>
+    <script>
+        function showPic(whichpic){
+            //改变图片路径
+            var source = whichpic.getAttribute("href");
+            var placeholder = document.getElementById("placeholder");
+            placeholder.setAttribute("src",source);
+            
+            //改本文本内容
+            var text = whichpic.getAttribute("title");
+            var description = document.getElementById("description");
+            description.firstChild.nodeValue = text;
+        }
+        
+        function cuontBodyChildren(){
+            var body_element = document.getElementsByTagName("body")[0];
+            alert(body_element.childNodes.length);
+            alert(body_element.nodeType);
+        }
+        window.onload = cuontBodyChildren;
+    </script>
+</html>
+
+<!--
+*英文学习
+* Photo Gallery = 图片库
+* Snapshots = 快照
+* placeholder = 占位符
+* which = 哪一个
+* source = 来源
+
+* description = 描述
+* Choose = 选择
+-->
+
+<!--
+*关键代码
+* getAttribute = 获取节点属性
+* nodeType = 返回节点类型
+* nodeValue = 用来检索节点的值，还可以设置节点的值
+* childNodes = 获取任何一个元素的所有子元素
+* firstChild = 访问数组的第一个元素
+* lastChid = 访问数组的最后一个元素
+-->
+
+
+<!--
+*知识总结
+* 写一个函数，还有申明变量，名称要能描述它们的用途，语义要明确。
+*
+* 将获取到的元素节点，赋值给新申明的变量，避免代码的冗长。
+    如：
+    1：placeholder.setAttribute("src",source);
+    2：document.getElementById("placeholder").setAttribute("src",whichpic.getAttribute("href"));
+    1肯定比2更容易阅读和理解。
+*
+* 添加事件处理函数的语法如下：
+    event = "JavaScript statements(s)"
+    我们可以把任意的熟练的JS语句放在这对引号之间，只要把各条语句用分号隔开。
+*
+* 遇到问题：点击链接时，超链接的默认行为也会被调用，会打开新的窗口。
+  因此我要阻止默认行为被调用，只需做如下操作：
+    onclick="showPic(this); return false;"
+    当点击时，如果JS代码返回false，onclick事件就会认为超链接没有被点击，也就不会跳到新的窗口了。
+*    
+* shildNodes属性返回的元素节点类型并非只有元素节点一种。
+    nodeType共有十二中可取值，其中3种具有实用价值。
+      元素节点：1；属性节点：2；文本节点：3；
+*
+* 遇到问题：我使用nodeValue属性，想要获取<p></p>标签里的文字；
+    使用nodeValue属性，description.firstChild.nodeValue
+    要注意的是，<p></p>标签里的文字，是该标签下面的一个节点。
+    所以 description.nodeValue 这样做，只是获取到了P标签的值，而不是其下面的文本。
+*
+* 
++-->
